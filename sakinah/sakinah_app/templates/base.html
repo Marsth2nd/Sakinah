@@ -1,0 +1,67 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Sakinah{% endblock %}</title>
+    {% load static %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+        extend: {
+            colors: {
+            primary: '#4DB6AC',
+            secondary: '#F5E6C5',
+            background: '#FFFFFF',
+            },
+        },
+        },
+    }
+    </script>
+</head>
+<body class="bg-background text-gray-800">
+    <!-- Navbar -->
+    <nav class="bg-primary p-4 shadow-md">
+        <div class="container mx-auto flex flex-wrap items-center justify-between">
+            <!-- Logo -->
+            <a href="{% url 'home' %}" class="flex items-center space-x-2">
+                <img src="{% static '/images/logoo.png' %}" alt="Sakinah Logo" class="h-18 w-14">
+                <span class="text-white text-2xl font-bold">Sakinah</span>
+            </a>
+            <!-- Mobile menu button -->
+            <button id="menu-toggle" class="block md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        <!-- Menu Links -->
+            <div id="menu" class="w-full md:flex md:items-center md:w-auto hidden md:space-x-6 mt-4 md:mt-0">
+                <!-- {% url 'home' %}" -->
+                <a href="#" class="block md:inline text-white hover:text-secondary">Home</a>
+                <!-- here -->
+                <a href="#" class="block md:inline text-white hover:text-secondary">Chat</a>
+                <!-- here -->
+                <a href="#" class="block md:inline text-white hover:text-secondary">About</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Page Content -->
+    <main class="container mx-auto py-10 px-4">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Mobile menu toggle script -->
+    <script>
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+        toggle.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+    });
+    </script>
+
+    </body>
+</html>
